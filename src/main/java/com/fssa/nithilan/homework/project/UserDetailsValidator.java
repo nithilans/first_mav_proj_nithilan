@@ -92,6 +92,9 @@ public class UserDetailsValidator {
 		}
 		// password  validate
 		public static boolean validatePassword(String password)throws IllegalArgumentException {
+			if (password == null || "".equals(password.trim())) {
+				throw new IllegalArgumentException("Password cannot be empty or null");
+			}
 			String passwordregex= "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
 			Pattern pattern = Pattern.compile(passwordregex);
 			Matcher matcher = pattern.matcher(password);
@@ -106,4 +109,6 @@ public class UserDetailsValidator {
 			return true;
 			
 		}
+		
+		
 }
