@@ -1,6 +1,5 @@
 package com.fssa.nithilan.homework.project;
 
-import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +14,6 @@ public class FoodDetailsValidator {
 		validateHotel(user.hotelname);
 		validatePincode(user.pincode);
 		validateplace(user.place);
-		validateLocalDate(user.localDate);
 		validateFoodPrice(user.foodPrice);
 		return true;
 
@@ -42,7 +40,7 @@ public class FoodDetailsValidator {
 		Matcher matcher = pattern.matcher(foodname);
 
 		if (foodname == null || "".equals(foodname.trim()) || !matcher.matches()) {
-			throw new IllegalArgumentException("Food Name cannot be empty or null");
+			throw new IllegalArgumentException("Hotel name cannot be empty or null");
 		}
 
 		return true;
@@ -67,12 +65,12 @@ public class FoodDetailsValidator {
 	}
 	
 	// Pincode validate
-			public static boolean validatePincode(String pincode) throws IllegalArgumentException {
-				String regex = "^[1-9][0-9]{5}$";
-				Pattern pattern = Pattern.compile(regex);
-				Matcher matcher = pattern.matcher(pincode);
-				Boolean isMatch = matcher.matches();
-				if (isMatch) {
+			public static boolean validatePincode(int pincode) throws IllegalArgumentException {
+//				String regex = "^[1-9][0-9]{5}$";
+//				Pattern pattern = Pattern.compile(regex);
+//				Matcher matcher = pattern.matcher(pincode);
+//				Boolean isMatch = matcher.matches();
+				if (pincode>0) {
 					return true;
 				} else {
 					throw new IllegalArgumentException("Pin code is: Invalid");
@@ -98,24 +96,13 @@ public class FoodDetailsValidator {
 				
 			}
 			
-			//localdate
-			public static boolean validateLocalDate(LocalDate eventDate) throws IllegalArgumentException {
-		        if (eventDate == null) {
-		            throw new IllegalArgumentException("date is null");
-		        }
-		        LocalDate currentDate = LocalDate.now();
-		        if (eventDate.isBefore(currentDate)) {
-		            throw new IllegalArgumentException("enter a date ");
-		        }
-		        return true;
-		    }
 			
 			public static boolean validateFoodPrice(float foodPrice) throws IllegalArgumentException {
-				String regex = "^[1-9][0-9]{3}$";
-				Pattern pattern = Pattern.compile(regex);
-				Matcher matcher = pattern.matcher(""+foodPrice);
-				Boolean isMatch = matcher.matches();
-				if (isMatch) {
+//				String regex = "^[1-9][0-9]{3}$";
+//				Pattern pattern = Pattern.compile(regex);
+//				Matcher matcher = pattern.matcher(""+foodPrice);
+//				Boolean isMatch = matcher.matches();
+				if (foodPrice>0) {
 					return true;
 				} else {
 					throw new IllegalArgumentException("Food price is: Invalid");
